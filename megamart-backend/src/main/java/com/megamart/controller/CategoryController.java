@@ -1,0 +1,35 @@
+package com.megamart.controller;
+
+import com.megamart.dto.ApiResponse;
+import com.megamart.entity.Category;
+import com.megamart.service.CategoryService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/categories")
+public class CategoryController {
+
+    private final CategoryService categoryService;
+
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
+
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<Category>>> getAllCategories() {
+        List<Category> categories = categoryService.getAllCategories();
+        return ResponseEntity.ok(ApiResponse.ok("Categories retrieved", categories));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<Category>> getCategoryById(@PathVariable Long id) {
+        Category category = categoryService.getCategoryById(id);
+        return ResponseEntity.ok(ApiResponse.ok("Category retrieved", category));
+    }
+}

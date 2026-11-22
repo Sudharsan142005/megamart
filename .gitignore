@@ -1,0 +1,24 @@
+# React
+**/node_modules/
+**/dist/
+
+# Spring Boot
+**/target/
+
+# Maven
+.m2/
+
+# Eclipse
+.metadata/
+.settings/
+.classpath
+.project
+
+# IntelliJ
+.idea/
+*.iml
+
+# Environment
+.env
+.env.*
+!.env.example
